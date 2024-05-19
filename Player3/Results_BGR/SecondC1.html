@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.3/p5.js"></script>
+    <title>Single</title>
+</head>
+<body style=" overflow-y: hidden;  overflow-x: hidden; background-color: rgb(0, 0, 0);"> 
+    <script>
+        //letter array 
+//RBG = 170, 183, 80
+let letters = []; // letter array 
+let letters2 = []; // letter array 
+let letters3 = []; // letter array
+let delayFrames = 240; // 2 seconds to being 
+let addedW = false; // Track if first letter has been added 
+let delayBetweenLetters = 5; // 1/6 of a second between letters
+let nextLetterTime = 0; // Track when to add the next letter
+let lettersToAdd = ["O","U","R"," ","R","G","B"," ","V","A","L","U","E"," ","I","S"," ","R","G","B",":","?", ",","?",",","80"]; // Letters to add
+let lettersToAdd2 = ["W","A","I","T","I","N","G"," ","F","O","R"," ","T","H","E"," ","F","I","N","A","L"," ","P","L","A","Y","E","R",".",".","."]; // Letters to add
+let lettersToAdd3 = ["R","G","B",":","0",",","183",",","80"];
+
+function setup() {
+  createCanvas(windowWidth, windowHeight, WEBGL); // WEBGL due to animation 
+
+  topWords = createGraphics(650, 100); //Canvas for first line of text
+  topWords.background(0);
+
+  bottomWords = createGraphics(650, 100); //Canvas for second line of text 
+  bottomWords.background(0); 
+
+  caption = createGraphics(350, 400); //Canvas for second line of text 
+  caption.background(225); 
+
+
+  frameRate(60)// set frame rate 
+
+  //styling for extra canvas's 
+  topWords.textSize(20); 
+  topWords.textFont('monospace'); 
+  bottomWords.textSize(15); 
+  bottomWords.textFont('monospace'); 
+  caption.textSize(12); 
+  caption.textFont('monospace'); 
+  
+}
+
+
+
+function draw(){
+  background(0);
+
+  fill(255); 
+  stroke(2);
+  stroke(18, 69, 26);
+
+ typography(); 
+ colourBlock();
+
+}
+
+ 
+
+
+// this function animates the text to come in letter by letter
+function typography() {
+
+  image(topWords, -topWords.width/2, -300);
+  push(); // the title
+  topWords.fill(255);
+
+  if (frameCount < delayFrames && !addedW) { //if frame count is smaller than delayframes add first letter
+    letters.push("Y"); //push the first letter
+    addedW = true; // Indicate that first letter have been added
+    nextLetterTime = frameCount + delayBetweenLetters; // time in between letters
+  }
+
+  if (frameCount >= nextLetterTime && lettersToAdd.length > 0) {
+    letters.push(lettersToAdd.shift()); // Add the next letter from the array
+    nextLetterTime = frameCount + delayBetweenLetters; //add next letter after 10 frames
+  }
+
+  const spacing = 20;// amount of spacing beteen letters 
+  // Display the letters from the array
+  for (let i = 0; i < letters.length; i++) {
+   topWords.text(letters[i], 40 + i * spacing, 60);//display on the extra canvas, add spacing so letters are clear
+  }
+pop();// the push and pop functions allow me to change the setting for brief parts of the code 
+image(caption,-topWords.width/4, -200);
+push(); // repeat for second part of code 
+
+  caption.fill( 0);
+  if (frameCount < delayFrames && !addedW) {
+    letters3.push("C"); // Add "W" only once
+    addedW = true; // indicate that "W" has been added
+    nextLetterTime = frameCount + delayBetweenLetters;
+  }
+
+  if (frameCount >= nextLetterTime && lettersToAdd3.length > 0) {
+    letters3.push(lettersToAdd3.shift()); // Add the next letter from the array
+    nextLetterTime = frameCount + delayBetweenLetters; //add next letter after 10 frames
+  }
+
+  const spacing3 = 20;
+  // Display the letters from the array
+  for (let i = 0; i < letters3.length; i++) {
+   caption.text(letters3[i], 30 + i * spacing3, 350);
+  }
+pop(); 
+  image(bottomWords, -topWords.width/2, 200);
+push(); // repeat for second part of code 
+
+  bottomWords.fill(225);
+  if (frameCount < delayFrames && !addedW) {
+    letters2.push("C"); // Add "W" only once
+    addedW = true; // indicate that "W" has been added
+    nextLetterTime = frameCount + delayBetweenLetters;
+  }
+
+  if (frameCount >= nextLetterTime && lettersToAdd2.length > 0) {
+    letters2.push(lettersToAdd2.shift()); // Add the next letter from the array
+    nextLetterTime = frameCount + delayBetweenLetters; //add next letter after 10 frames
+  }
+
+  const spacing2 = 20;
+  // Display the letters from the array
+  for (let i = 0; i < letters2.length; i++) {
+   bottomWords.text(letters2[i], 40 + i * spacing2, 60);
+  }
+pop(); 
+ 
+}
+
+function colourBlock(){
+     caption.push()
+    caption.fill(0,183,80);
+    caption.noStroke();
+     caption.rect(25,25,300,300)
+    caption.pop()
+  }
+
+ function mouseIsPressed() {
+     window.location.href = "FinalC.html";  // Open the next interface
+ }
+
+// // Add an event listener for the mouse press event
+  document.addEventListener("mousedown", mouseIsPressed)
+    </script>
+</body>
+</html>
