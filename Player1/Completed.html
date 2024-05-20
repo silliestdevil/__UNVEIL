@@ -67,7 +67,12 @@ function drawCircle() {
 function circleDrawn() {
   // Redirect to Single.html once the circle is fully drawn
   if (angle >= TWO_PI) {
-    window.location.href = "Results_RGB/SingleA.html";
+   // window.location.href = "Results_RGB/SingleA.html";
+   fetch("http://172.20.10.4:3000/colour", {
+      method: "POST", // or 'PUT'
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({colour: 'R', value: 170}), //add only notify once 
+    }).then(res => res.json()).then(res => console.log(res));
   }
 }
 
