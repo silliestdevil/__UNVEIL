@@ -22,8 +22,7 @@ let addedW = false; // Track if first letter has been added
 let delayBetweenLetters = 5; // 1/6 of a second between letters
 let nextLetterTime = 0; // Track when to add the next letter
 let lettersToAdd = ["O"," ","R","E","C","I","E","V","E"," ","T","H","E"," ","R","G","B"," ","V","A","L","U","E"]; // Letters to add
-let lettersToAdd2 = ["R","A","I","S","E"," ","Y","O","U","R"," ","E","Y","E","B","R","O","W","S" ]; // Letters to add
-
+let lettersToAdd2 = ["O","P","E","N"," ","Y","O","U","R"," ","J","A","W"]; // Letters to add
 
 
 
@@ -295,5 +294,7 @@ function drawDiagnosticInfo() { //draw diagnostic information life frames per se
  //make the function fully green when its correct 
  //Notify whichever sender 
 
+
+ 
 
  
