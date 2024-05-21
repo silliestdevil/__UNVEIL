@@ -142,13 +142,18 @@ function colourBlock(){
 
   function checkForPlayer() {
   if (lettersToAdd2.length === 0 && frameCount > nextLetterTime) {
+    fetch("http://172.20.10.4:3000/colour", {
+      method: "POST", // or 'PUT'
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({colour: 'G', value: 183}),
+    })
     fetch("http://172.20.10.4:3000/colour")
       .then(res => res.json())
       .then(res => {
         let objR = res.find(o => o.colour === 'R');
         let objB = res.find(o => o.colour === 'B');
         
-        if (objB) {
+        if (objR) {
           console.log(objR);
           setTimeout(() => {
             window.location.href = "Second2.html"; // Redirect to SecondA1 after 3 seconds
