@@ -25,6 +25,7 @@ let lettersToAdd = ["O"," ","R","E","C","I","E","V","E"," ","T","H","E"," ","R",
 let lettersToAdd2 = ["C","L","O","S","E"," ","Y","O","U","R"," ","E","Y","E","S" ]; // Letters to add
 
 
+let eyeBlinkLogCount = 0; // Counter for the number of times "eyeBlink" has been logged
 
 
 
