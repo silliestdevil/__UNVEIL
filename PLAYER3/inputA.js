@@ -239,8 +239,8 @@ function drawFaceMetrics(){ //draw the calculated face metrics
               // let jawOpen = aFaceMetrics.categories.find(category => category.categoryName === 'jawOpen');
               let mouthLowerDownLeft = aFaceMetrics.categories.find(category => category.categoryName === 'mouthLowerDownLeft');
               let mouthUpperUpRight = aFaceMetrics.categories.find(category => category.categoryName === 'mouthUpperUpRight');
-              let browOuterUpLeft = aFaceMetrics.categories.find(category => category.categoryName === 'browOuterUpLeft');
-              let browOuterUpRight = aFaceMetrics.categories.find(category => category.categoryName === 'browOuterUpRight');
+              let eyeBlinkLeft = aFaceMetrics.categories.find(category => category.categoryName === 'eyeBlinkLeft');
+              let eyeBlinkRight = aFaceMetrics.categories.find(category => category.categoryName === 'eyeBlinkRight');
               
             
 
@@ -254,10 +254,16 @@ function drawFaceMetrics(){ //draw the calculated face metrics
                   extra.text("STOP TALKING", 10,500);
               }
               
-              if ((browOuterUpLeft && browOuterUpLeft.score >= 0.9) || (browOuterUpRight && browOuterUpRight.score >= 0.9)) {
+              if ((eyeBlinkLeft && eyeBlinkLeft.score >= 0.7) || (eyeBlinkRight && eyeBlinkRight.score >= 0.7)) {
+                console.log("eyeBlink");
+                eyeBlinkLogCount++; // Increment the log counter
+                if (eyeBlinkLogCount >= 15) { // Check if the counter has reached 15
                   console.log("eyebrowRaise");
-eyebrowRaised = true; // Flag to track if eyebrow is raised
-              }
+                  eyebrowRaised = true; // Flag to track if eyebrow is raised
+                }
+            }
+              
+            
               
 
         }
@@ -296,5 +302,3 @@ function drawDiagnosticInfo() { //draw diagnostic information life frames per se
  //make the function fully green when its correct 
  //Notify whichever sender 
 
-
- 
