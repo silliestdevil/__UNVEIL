@@ -8,6 +8,7 @@ Film Link:
 
 Youtube Link: 
 
+
 Aims + Objectives:
 • Using machine learning as a tool to explore group behaviour
 • Explore the limits of machine learning in facial expression recognition
