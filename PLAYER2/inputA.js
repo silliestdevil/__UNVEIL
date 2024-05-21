@@ -239,8 +239,7 @@ function drawFaceMetrics(){ //draw the calculated face metrics
               // let jawOpen = aFaceMetrics.categories.find(category => category.categoryName === 'jawOpen');
               let mouthLowerDownLeft = aFaceMetrics.categories.find(category => category.categoryName === 'mouthLowerDownLeft');
               let mouthUpperUpRight = aFaceMetrics.categories.find(category => category.categoryName === 'mouthUpperUpRight');
-              let browOuterUpLeft = aFaceMetrics.categories.find(category => category.categoryName === 'browOuterUpLeft');
-              let browOuterUpRight = aFaceMetrics.categories.find(category => category.categoryName === 'browOuterUpRight');
+              let jawOpen = aFaceMetrics.categories.find(category => category.categoryName === 'jawOpen');
               
             
 
@@ -254,10 +253,10 @@ function drawFaceMetrics(){ //draw the calculated face metrics
                   extra.text("STOP TALKING", 10,500);
               }
               
-              if ((browOuterUpLeft && browOuterUpLeft.score >= 0.9) || (browOuterUpRight && browOuterUpRight.score >= 0.9)) {
-                  console.log("eyebrowRaise");
+              if ((jawOpen && jawOpen.score >= 0.8)) {
+                console.log("eyebrowRaise");
 eyebrowRaised = true; // Flag to track if eyebrow is raised
-              }
+            }
               
 
         }
