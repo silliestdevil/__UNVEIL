@@ -142,6 +142,11 @@ function colourBlock(){
 
 
   function checkForPlayer() {
+    fetch("http://172.20.10.4:3000/colour", {
+      method: "POST", // or 'PUT'
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({colour: 'B', value: 80}),
+    })
     if (lettersToAdd2.length === 0 && frameCount > nextLetterTime) {
     fetch("http://172.20.10.4:3000/colour")
     .then(res => res.json())
@@ -158,6 +163,10 @@ function colourBlock(){
     
   }}
 
+
+    </script>
+</body>
+</html>
 
     </script>
 </body>
