@@ -1,0 +1,110 @@
+<!-- COUNTDOWN FOR FACE TRACKING-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.3/p5.js"></script>
+    <title>Document</title>
+</head>
+<!-- no scroll and black background -->
+<body style=" overflow-y: hidden;  overflow-x: hidden; background-color: rgb(0, 0, 0);">
+    <script>
+
+let countdown = 5; // Initialize countdown to 5 seconds
+let startTime;
+let frameCount = 0; // Keeps track of the frame count
+let delayFrames = 30; // Number of frames to wait before starting to type the first letter
+let delayBetweenLetters = 10; // Number of frames between each letter being added
+let waitingText = "Waiting..."; // Text to display with typewriter effect
+let letters = []; // Array to hold the letters as they are added
+let nextLetterTime = 0; // Time to add the next letter
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  startTime = millis(); // Record the start time
+}
+
+function draw() {
+  background(0);
+
+  let currentTime = millis();
+  let elapsedTime = (currentTime - startTime) / 1000; // Calculate elapsed time in seconds
+
+  drawText(elapsedTime);
+  frameCount++;
+
+  //function to draw the circle
+  if (elapsedTime >= 5) {
+    drawCircle();
+
+    // Update the countdown every second after 5 seconds
+    if (frameCount % 60 == 0 && countdown > 0) {
+      countdown--;
+    } else if (countdown == 0) { //once the countdown reaches 0 open Face recognition
+      window.location.href = "FaceRecognition.html";
+    }
+  }
+}
+
+function drawText(elapsedTime) {
+  fill(255);
+  textSize(25);
+  textFont("monospace");
+  textAlign(CENTER, CENTER);
+
+  // Add the letters of 'Waiting...' one by one until countdown begins
+  if (elapsedTime < 5 && letters.length < waitingText.length) {
+    if (frameCount >= nextLetterTime) {
+      letters.push(waitingText[letters.length]);
+      nextLetterTime = frameCount + delayBetweenLetters;
+    }
+  }
+
+  const spacing = 20; // Spacing between letters
+
+  // Display the letters on the canvas
+  let displayString = letters.join('');
+  text(displayString, width / 2, height / 2);
+
+
+  // Display the countdown if 5 seconds have passed
+  if (elapsedTime >= 5) {
+   // Clear the area where the countdown will be displayed
+   fill(0); // Set fill color to background color
+   stroke(0)
+   rectMode(CENTER); // Set rectangle mode to center
+   rect(width / 2, height / 2, 180, 50); // Draw a rectangle over the area
+
+   // Display the countdown
+   fill(255); // Reset fill color
+   text(countdown, width / 2, height / 2 );
+  }
+}
+
+
+function drawCircle() {
+  let circleRadius = 100; // Radius of the circle
+  let circleX = width / 2; // X-coordinate of the circle center
+  let circleY = height / 2; // Y-coordinate of the circle center
+
+  // Calculate the angle for the countdown progress
+  let angle = map(countdown, 0, 5, 0, TWO_PI); // Map the countdown value to an angle
+
+  // Draw the countdown circle
+  noFill();
+  stroke(255);
+  strokeWeight(4);
+  beginShape();
+  for (let a = 0; a <= angle; a += 0.01) {
+    let x = circleX + cos(a) * circleRadius;
+    let y = circleY + sin(a) * circleRadius;
+    vertex(x, y);
+  }
+  endShape();
+}
+
+    </script>
+</body>
+</html> 
