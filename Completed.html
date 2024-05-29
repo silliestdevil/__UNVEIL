@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.3/p5.js"></script>
+    <title>Completed</title>
+</head>
+<body style=" overflow-y: hidden;  overflow-x: hidden; background-color: rgb(34, 153, 84);">
+  <p id="counter"> </p>
+    <script>
+      let tryingToNavigate = false; //for loading next html
+        let angle = 0; // Initial angle for drawing the circle
+      
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+}
+
+function draw() {
+  background(34, 153, 84);
+  drawCircle();
+  drawCheckMark(width / 2, height / 2, 100);
+
+  if (angle < TWO_PI) {
+    angle += 0.05; // Increment angle for the next frame
+  } else {
+    circleDrawn(); // Check if the circle is completed
+  }
+}
+
+function drawCheckMark(x, y, size) {
+  // Calculate coordinates for the check mark lines
+  let startX = x - size * 0.4;
+  let startY = y;
+  let midX = x - size * 0.05;
+  let midY = y + size * 0.30;
+  let endX = x + size * 0.45;
+  let endY = y - size * 0.5;
+
+  // Draw the check mark
+  stroke(255);
+  strokeWeight(10);
+  noFill();
+  beginShape();
+  vertex(startX, startY);
+  vertex(midX, midY);
+  vertex(endX, endY);
+  endShape();
+}
+
+function drawCircle() {
+  let circleRadius = 100; // Radius of the circle
+  let circleX = width / 2; // X-coordinate of the circle center
+  let circleY = height / 2; // Y-coordinate of the circle center
+
+  // Draw the circle
+  noFill();
+  stroke(255);
+  strokeWeight(10);
+  beginShape();
+  for (let a = 0; a <= angle; a += 0.01) {
+    let x = circleX + cos(a) * circleRadius;
+    let y = circleY + sin(a) * circleRadius;
+    vertex(x, y);
+  }
+  endShape();
+}
+
+function circleDrawn() {
+  // Redirect to Single.html once the circle is fully drawn
+  if (angle >= TWO_PI) {
+    console.log('sending');
+
+    fetch("http://172.20.10.4:3000/colour", {
+      method: "POST", // or 'PUT'
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({colour: 'G', value: 183}),
+    })
+    .then(res => res.json())
+    .then(res => {
+      console.log(res);
+      setTimeout(() => {
+        if (tryingToNavigate == false)//to make sure the html redirects as the next p5 sketch is drawn
+        window.location.href = "Single2.html"; // Redirect after 3 seconds
+            tryingToNavigate = true;
+      }, 3000); // 3000 milliseconds = 3 seconds
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      // Optionally handle the error (e.g., notify the user, retry the request, etc.)
+    });
+  }
+}
+    </script>
+</body>
+</html> 
