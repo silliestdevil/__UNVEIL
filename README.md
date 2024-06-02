@@ -4,9 +4,7 @@ Group Project: Charlotte Young, Hollis Hui, Lily Mccardle
 
 Title: __ UNVEIL
 
-Film Link: 
-
-Youtube Link: 
+Video Link: 
 
 
 Aims + Objectives:
