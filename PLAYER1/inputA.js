@@ -148,15 +148,17 @@ function drawVideoBackground() { //function to draw the webcam video feed as the
   scale(-1, 1);
      // Apply tint if eyebrow is raised
      if (eyebrowRaised) {
-      if (tryingToNavigate == false) //to make sure the html redirects as the next p5 sketch is drawn
       tint(255, 0, 0, 0);; // Reset tint
+      if (tryingToNavigate == false)//to make sure the html redirects as the next p5 sketch is drawn
       window.location.href = "Completed.html";  // Open the next interface
-      tryingToNavigate = true;
+          tryingToNavigate = true;
+
   } else {
     tint(255, 0, 0, 0);; // Reset tint
   }
   image(myCapture, 0, 0, width, height);
   pop();
+
 }
 
 //------------------------------------------
