@@ -78,6 +78,7 @@ async function predictWebcam() {
 function setup() {
   createCanvas(800, 600);
   let contraints1 = {
+  console.log(videolist[i]);
     video: {
       deviceId: 1
     }
