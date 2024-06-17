@@ -77,7 +77,11 @@ async function predictWebcam() {
 ///setup function: Initializes the canvas and sets up the webcam capture
 function setup() {
   createCanvas(800, 600);
-  myCapture = createCapture(VIDEO);
+  let contraints1 = {
+    video: {
+      deviceId: 1
+    }
+   myCapture = createCapture(contraints1);
   myCapture.size(320, 240);
   myCapture.hide();
   extra = createGraphics(windowWidth,700); 
