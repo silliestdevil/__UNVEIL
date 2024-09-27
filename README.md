@@ -1,6 +1,6 @@
 READ ME. DESCRIPTION:
 
-Group Project: Charlotte Young, Hollis Hui, Lily Mccardle
+Group Project: Charlotte Young, Hollis Hui 
 
 Title: __ UNVEIL
 
